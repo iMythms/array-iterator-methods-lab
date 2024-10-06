@@ -101,7 +101,9 @@ born in the 1500's.
   the years 1500 and 1599.
 */
 
-let veryOldInventors = []
+let veryOldInventors = inventors.filter(function (inventor) {
+	return inventor.year >= 1500 && inventor.year < 1600
+})
 
 // Complete the exercise in the space below:
 
@@ -127,7 +129,9 @@ Hint: Return a new object literal from the callback that looks like:
       { first: "First Name", last: "Last Name" }
 */
 
-let inventorNames = []
+let inventorNames = inventors.map(function (inventor) {
+	return { first: inventor.first, last: inventor.last }
+})
 
 // Complete the exercise in the space below:
 
@@ -155,7 +159,9 @@ Sort the inventors by birth date in ascending order (from those born furthest in
 the past to those born most recently).
 */
 
-let sortedByBirthYear = []
+let sortedByBirthYear = inventors.sort(function (a, b) {
+	return a.year - b.year
+})
 
 // Complete the exercise in the space below:
 
@@ -189,7 +195,9 @@ from an array of inventor objects
 - Assign the found inventor object to the variable inventorNamedAda
 */
 
-let inventorNamedAda = {}
+let inventorNamedAda = inventors.find(function (inventor) {
+	return inventor.first === 'Ada'
+})
 
 // Complete the exercise in the space below:
 
@@ -214,7 +222,10 @@ Hint: Use the String.prototype.split() method to separate the first and last
       After splitting the names, rearrange them to the "First Last" format.
 */
 
-let firstLast = []
+let firstLast = people.map(function (person) {
+	let [last, first] = person.split(', ')
+	return `${first} ${last}`
+})
 
 // Complete the exercise in the space below:
 
@@ -275,7 +286,10 @@ old or older.
 - Store the result (true or false) in the variable 'isAdultPresent'. 
 */
 
-let isAdultPresent = null
+let isAdultPresent = devs.some(function (dev) {
+	const currentYear = new Date().getFullYear()
+	return currentYear - dev.year >= 18
+})
 
 // Complete the exercise in the space below:
 
@@ -296,7 +310,10 @@ Use Array.prototype.every() to determine if every person in the devs array is
 - Store the result (true or false) in the variable 'isEveryone19OrOlder'.
 */
 
-let isEveryone19OrOlder = null
+let isEveryone19OrOlder = devs.every(function (dev) {
+	const currentYear = new Date().getFullYear()
+	return currentYear - dev.year >= 19
+})
 
 // Complete the exercise in the space below:
 
@@ -313,7 +330,9 @@ a specific ID 823423 from an array of comment objects.
 - Assign the found comment object to the variable 'commentById'.
 */
 
-let commentById = {}
+let commentById = comments.find(function (comment) {
+	return comment.id === 823423
+})
 
 // Complete the exercise in the space below:
 
@@ -330,7 +349,9 @@ of comment objects.
 - Store the index in the variable 'idx'.
 */
 
-let idx = null
+let idx = comments.findIndex(function (comment) {
+	return comment.id === 123523
+})
 
 // Complete the exercise in the space below:
 
@@ -359,7 +380,9 @@ Hints:
   accumulator.
 */
 
-let totalYearsLived = 0
+let totalYearsLived = inventors.reduce(function (total, inventor) {
+	return total + (inventor.passed - inventor.year)
+}, 0)
 
 // Complete the exercise in the space below:
 
@@ -387,7 +410,14 @@ Hints:
   initial value of the "accumulator".
 */
 
-let travelMethodCounts = {}
+let travelMethodCounts = travelMethods.reduce(function (acc, method) {
+	if (!acc[method]) {
+		acc[method] = 1
+	} else {
+		acc[method]++
+	}
+	return acc
+}, {})
 
 // Complete the exercise in the space below:
 
